@@ -1,71 +1,120 @@
 ---
-title: "A3: Incarceration"
+title: "A3: Incarceration - Mohamed Aden"
 output: html_document
 ---
 
+
+
 ### Introduction
 
-An introduction of the problem domain and a description of the variable(s) you are choosing to analyze (and why!)
+A significant issue heard of constantly is the population proportion of minorities in prison populations, specifically African Americans. I was initially going to only examine the first CSV (prison data set for county/state), but I'm also interested in the jail's data set and what it can tell us. Considering the jails are different than prison in regards of process (jail is where you wait prior to court hearings while prison is where those convicted of crimes go), looking at the two data sets and comparing the population proportions within them I'm interested to see what we can tell. The variable we will constantly be looking at is total jail population and prison populations because this is what will allow us to maintain a broad perspective of the incarceration situation, alongside the Black populations as these two in conjunction with each other tell us the true story (or rather, contributes to our existing knowledge of it). We are looking at black population proportions in comparison to total comparison as well in both jails and prisons at the county and state level with the years examined being 2000-2013 to accommodate for any discrepancies we may see between the prison and jail data groups by using only DCRP (individual) and NCRP (facilital-level) data. We will often look at the most recent year to get a sense of the most recent update on the situation using the data available and still working within self-given constraints. 
 
 ### Summary Information
 
-Write a summary paragraph of findings that includes the 5 values calculated from your summary information R script
-
-These will likely be calculated using your DPLYR skills, answering questions such as: 
-
-- What is the average value of my variable across all the counties (in the current year)?
-- Where is my variable the highest / lowest?
-- How much has my variable change over the last N years?
-
-Feel free to calculate and report values that you find relevant. Again, remember that the purpose is to think about how these measure of incarceration vary by race.
+My examination of the two different data frames regarding Black individuals showed some surprising results. For the most recent year, the average black prison population in 2013 across all counties in 2013 was about 281 black individuals. In perspective, dividing this by the average total population of prisons in all counties (regardless of gender) is only .279% which is extremely small. For the most recent year in jails, the average black population was about 87 individuals, and similarly if we also put this into perspective we can see the population proportion of black people in jails across all counties in comparison to total populations in jails across all counties for 2013 is only .08734%, which is also extremely small so one might think that this must be an indicator of something interesting. Now, interestingly enough looking at the entire time span presented in our filtered version of the original dataframe(s), if we average from the year 200 to the year 2013, then we can see for jails this number is not at all surprising as it's .0928% and with prisons at .151% letting us know that the numbers we saw in the most recent year are actually a positive in the grande scheme (not too grande) of the data frame. 
 
 ### The Dataset
 
-Who collected the data?  
-How was the data collected or generated?  
-Why was the data collected?  
-How many observations (rows) are in your data?  
+Who collected the data? 
+
+Vera Institute of Justice had a project called Incarceration Trends which was intended to educate the public about mass incarcerations and the details in them. They used data collected by the U.S. Department of State Justice Statistics (abbreviated as BJS), which consists of data collected by the National Corrections Reporting Program, Deaths in Custody Reporting Program, Annual Survey of Jails, and the Census of Jails. 
+
+
+How was the data collected or generated?
+
+Through Census', Surveys, CDC Data sets, US dept. of Agriculture's Commuting Zones and Labor Market Areas.
+
+
+Why was the data collected? 
+
+For several purposes, all dependent on who was collecting the data and their intentions. There are clear intentions such as providing better insights to the public about incarceration statistics, that warranted collecting this data.
+
+
+How many observations (rows) are in your data?
+
+*Prison:* 153,811 rows
+
+*Jail:* 153,811 rows
+
+
 How many features (columns) are in the data?  
+
+*Prison:* 153,811 rows
+
+*Jail:* 153,811 rows
+
+
 What, if any, ethical questions or questions of power do you need to consider when working with this data?  
+
+Who was in charge of the data and their intentions. Intentions are important to consider because if there's a positive intention for with the betterment of society at mind such as educating the public on a matter, and then there's also the same dataset but curated with ill intentions in mind (such as misinformation) then it's obvious that there may be more to consider such as biases and other factors that may be influencing the clarity of the data at hand. 
+
 What are possible limitations or problems with this data?   (at least 200 words)
 
+There are some discrepancies in the data that could definitely harm the credibility of the analysis and the results. Firstly, there's a lot of replacement of data to fill voids that exist there but this also runs the risk of not truly representing the data as accurately as possible if there's a miscalculation (or this replacement of data is not as accurate as it truly is to be) then this data neglects it (makes note of it still) and this is dangerous as this may create the misconception that this data can be trusted completely when in reality, there are many factors that may have affected it's credibility. For the prison data, the NCRP data includes sentences of less than one year except for some states from different year ranges. This is problematic for more reasons than one, but the most glaring issue being special cases. If not careful to extract these states beforehand or even not acknowledging the special cases, then down the road, there's a good chance whatever representation of data attempted will not be as accurate as compared to if these states were not extracted. By ackloweding these discrepancies and acting accordingly to still represent the data in a "fair" way, it allows for a smoother and more trustable end result of whatever anaylsis is being done. 
 
 ### Trends Over Time Chart
 
-Include a chart. Make sure to describe why you included the chart, and what patterns emerged
-
-The first chart that you will create and include will show the trend over time of your variable/topic. Think carefully about what you want to communicate to your user (you may have to find relevant trends in the dataset first!). Here are some requirements to help guide your design:
-
-- Show more than one, but fewer than ~10 trends
-  - This may mean showing the same measure for different locations or different racial groups. Think carefully about a meaningful comparison of locations (e.g., the top 10 counties in a state, top 10 states, etc.)
-- You must have clear x and y axis labels
-- The chart needs a clear title 
-- You need a legend for your different line colors and a clear legend title
-
-When we say "clear" or "human readable" titles and labels, that means that you should not just display the variable name.
-
-Here's an example of how to run an R script inside an RMarkdown file:
-
-``````{r, echo = FALSE, code = readLines("chart1_example.R")}
+```{r, echo = TRUE}
+library(ggplot2)
+source("summary.R")
+ggplot() +
+  geom_line(data = black_prison_proportion_trend, aes(x = year, y = black_prison_proportion, color = "Prison Trend")) +
+  geom_line(data = black_jail_proportion_trend, aes(x = year, y = black_jail_proportion, color = "Jail Trend")) +
+  labs(title = "Black Prisons and Jails Population Proportion Trends (2000-2013)",
+       x = "year", 
+       y = "Black Population Proportion (percentages)") +
+  scale_color_manual(values = c("Prison Trend" = "red", "Jail Trend" = "cyan")) +
+  theme(legend.title = element_blank())
 ```
+
+*This chart is helpful in showing the trends over time in the black populations in prisons and jails, and a pattern seen is jail population proportions for black individuals decreasing while prison population proportions have climbed a decent amount suggesting the possibly of black people being sentenced to prison at a increasing rate in proportion to the total count in prisons (across all counties)*
 
 ### Variable Comparison Chart
 
-Include a chart. Make sure to describe why you included the chart, and what patterns emerged
+```{r}
+library(ggplot2)
+ggplot(black_prison_proportion_trend, aes(x = total_black_prison_pop, y = total_prison_pop)) +
+  geom_point() +
+  labs(title = "Total Prison Populations vs Black Prison Populations",
+       x = "Black Prison Population",
+       y = "Total Prison Population") +
+  scale_y_continuous(labels = scales::comma)
+```
+*While we might have an idea of what the numbers look like it's always better to get a clearer sense by looking at it in some visual sense, such as comparing and seeing the correlation on a scatter plot between the black prison population and the total prison population at different scales. It's obvious there's some correlation shown here as we can draw a line representing the average of all plotted points and have not too much deviation from this line and the actual points shown*
 
-The second chart that you will create and include will show how two different (continuous) variables are related to one another. Again, think carefully about what such a comparison means and what you want to communicate to your user (you may have to find relevant trends in the dataset first!). Here are some requirements to help guide your design:
-
-- You must have clear x and y axis labels
-- The chart needs a clear title 
-- If you choose to add a color encoding (not required), you need a legend for your different color and a clear legend title
 
 ### Map
 
-Include a chart. Make sure to describe why you included the chart, and what patterns emerged
+```{r, echo = TRUE}
+library(ggplot2)
+library(dplyr)
+library(maps)
 
-The last chart that you will create and include will show how a variable is distributed geographically. Again, think carefully about what such a comparison means and what you want to communicate to your user (you may have to find relevant trends in the dataset first!). Here are some requirements to help guide your design:
+# Load
+us_state_map <- map_data("state")
 
-- Your map needs a title
-- Your color scale needs a legend with a clear label
-- Use a map based coordinate system to set the aspect ratio of your map
+# Creating table
+state_names <- data.frame(
+  state = tolower(state.abb),
+  full_name = tolower(state.name)
+)
+
+# Joining data
+black_prison_proportion_by_state <- black_prison_proportion_by_state %>%
+  left_join(state_names, by = "state")
+
+# Merging map data
+states_proportions_merge <- us_state_map %>%
+  left_join(black_prison_proportion_by_state, by = c("region" = "full_name"))
+
+ggplot(data = states_proportions_merge) +
+  geom_polygon(aes(x = long, y = lat, group = group, fill = black_prison_proportion), color = "white") +
+  labs(title = "Black Prison Population Proportions (by state)",
+       fill = "Proportion (%)") +
+  coord_map() +
+  theme_minimal()
+
+```
+
+*This chart allows us to get a clearer sense of what the ppulation proportions look like across the country. It seems they are much higher down southeast.*
 
