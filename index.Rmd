@@ -56,7 +56,7 @@ There are some discrepancies in the data that could definitely harm the credibil
 
 ```{r, echo = TRUE}
 library(ggplot2)
-source("summary.R")
+
 ggplot() +
   geom_line(data = black_prison_proportion_trend, aes(x = year, y = black_prison_proportion, color = "Prison Trend")) +
   geom_line(data = black_jail_proportion_trend, aes(x = year, y = black_jail_proportion, color = "Jail Trend")) +
@@ -90,7 +90,7 @@ library(ggplot2)
 library(dplyr)
 library(maps)
 
-# Load
+# Loading map data
 us_state_map <- map_data("state")
 
 # Creating table
@@ -115,6 +115,4 @@ ggplot(data = states_proportions_merge) +
   theme_minimal()
 
 ```
-
-*This chart allows us to get a clearer sense of what the ppulation proportions look like across the country. It seems they are much higher down southeast.*
-
+*This chart allows us to get a clearer sense of what the ppulation proportions look like across the country. It seems they are much higher down southeast which may indicate that either more black people live over here or there is some other factor affecting this trend we see.*
