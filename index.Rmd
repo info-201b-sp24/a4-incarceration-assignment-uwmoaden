@@ -4,7 +4,6 @@ output: html_document
 ---
 
 
-
 ### Introduction
 
 A significant issue heard of constantly is the population proportion of minorities in prison populations, specifically African Americans. I was initially going to only examine the first CSV (prison data set for county/state), but I'm also interested in the jail's data set and what it can tell us. Considering the jails are different than prison in regards of process (jail is where you wait prior to court hearings while prison is where those convicted of crimes go), looking at the two data sets and comparing the population proportions within them I'm interested to see what we can tell. The variable we will constantly be looking at is total jail population and prison populations because this is what will allow us to maintain a broad perspective of the incarceration situation, alongside the Black populations as these two in conjunction with each other tell us the true story (or rather, contributes to our existing knowledge of it). We are looking at black population proportions in comparison to total comparison as well in both jails and prisons at the county and state level with the years examined being 2000-2013 to accommodate for any discrepancies we may see between the prison and jail data groups by using only DCRP (individual) and NCRP (facilital-level) data. We will often look at the most recent year to get a sense of the most recent update on the situation using the data available and still working within self-given constraints. 
@@ -56,6 +55,7 @@ There are some discrepancies in the data that could definitely harm the credibil
 
 ```{r, echo = TRUE}
 library(ggplot2)
+source("summary.R")
 
 ggplot() +
   geom_line(data = black_prison_proportion_trend, aes(x = year, y = black_prison_proportion, color = "Prison Trend")) +
@@ -115,4 +115,5 @@ ggplot(data = states_proportions_merge) +
   theme_minimal()
 
 ```
+
 *This chart allows us to get a clearer sense of what the ppulation proportions look like across the country. It seems they are much higher down southeast which may indicate that either more black people live over here or there is some other factor affecting this trend we see.*

@@ -1,13 +1,13 @@
 [![Review Assignment Due Date](https://classroom.github.com/assets/deadline-readme-button-24ddc0f5d75046c5622901739e7c5dd533143b0c8e959d652212380cedb1ea36.svg)](https://classroom.github.com/a/A21hL4nA)
 # Assignment 4: Incarceration
 
-Link to your final GitHub pages site here: https://info-201a-sp22.github.io/a3-starter/index.html (change the link to for your GitHub pages site)
+Link to your final GitHub pages site here: https://info-201b-sp24.github.io/a4-incarceration-assignment-uwmoaden/ (change the link to for your GitHub pages site)
 
 America is the country with the greatest number of people incarcerated in the world, and of all Americans, people of color, especially Black people, are incarcerated at disproportionately high rates — the result of both historical and present-day racism. But just how much have prison and jail populations increased over time, and how do race and gender figure into these trends? How, if at all, can a deeper analysis of these trends help identify possible solutions and areas where the public needs to pay more attention?
 
-In this assignment, you will use your data analysis and visualization skills to expose patterns of inequality using incarceration data collected by the [Vera Institute](https://github.com/vera-institute/incarceration-trends). You will create an R Markdown file and share it as a small website via GitHub pages.
+In this assignment, you will use your data analysis and visualization skills to expose patterns of inequality using incarceration data collected by the [Vera Institute](https://github.com/vera-institute/incarceration-trends). You will create an R Markdown file and share it as a small website via GitHub pages.
 
-This assignment is more open-ended than previous ones. You will be tasked with understanding the data itself, choosing the variables you want to analyze, and deciding the optimal way to write your code. 
+This assignment is more open-ended than previous ones. You will be tasked with understanding the data itself, choosing the variables you want to analyze, and deciding the optimal way to write your code.
 
 # Data
 
@@ -30,8 +30,8 @@ A few more notes:
 
 For this assignment, you will create an .Rmd report about incarceration in the U.S., which must include:
 
-- An introduction of the problem domain and a description of the variable(s) you are choosing to analyze (and why!)
-- A paragraph of summary information, citing at least 5 values calculated from the data
+- An introduction of the problem domain and a description of the variable(s) you are choosing to analyze (and why!)
+- A paragraph of summary information, citing at least 5 values calculated from the data
 - A description of the dataset, who collected it, why, and any limitations or problems with the data
 - A chart that shows trends over time for a variable of your choice
 - A chart that compares two variables to one another
